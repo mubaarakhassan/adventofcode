@@ -1,6 +1,7 @@
-﻿using AdventOfCode_2019.Day01;
+﻿using AdventOfCode_2019.Day02;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace AdventOfCode_2019
 {
@@ -12,17 +13,25 @@ namespace AdventOfCode_2019
             string workingDirectory = Environment.CurrentDirectory;
 
             // This will get the current PROJECT directory
-            //string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
-            Solution s = new Solution();
+            /*   Solution solutionDay1 = new Solution();
 
-            // This will read the input file and create arrays for each new line
-            string[] input = File.ReadAllLines($"{workingDirectory}\\Day01\\input.in");
+               // This will read the input file and create arrays for each new line
+               string[] input = File.ReadAllLines($"{projectDirectory}\\Day01\\input.in");
+
+               // Calculate the fuel
+               var fuel = solutionDay1.RocketFuelEquationPart2(input);
+               Console.WriteLine($"The fuel needed for going to space = {fuel} !");
+           */
             
-            // Calculate the fuel
-            var fuel = s.RocketFuelEquationPart2(input);
-
-            Console.WriteLine($"The fuel needed for going to space = {fuel} !");
+            string[] file = File.ReadAllLines($"{projectDirectory}\\Day02\\input.in").FirstOrDefault().Split(','); ;
+            
+            var input = file.Select(x => Int32.Parse(x)).ToArray();
+            
+            Solution solutionDay2 = new Solution();
+            var result = solutionDay2.IntcodeProgram(input, 12, 2);
+            Console.WriteLine($"The current value in the array = {result} !");
         }
     }
 }

@@ -72,4 +72,6 @@ namespace AdventOfCode_2019.Day01
             return result;
         }
     }
+
+
 }
