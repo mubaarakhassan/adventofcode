@@ -11,7 +11,7 @@ namespace AdventOfCode_2019
         {
             // This will get the current WORKING directory (i.e. \bin\Debug)
             string workingDirectory = Environment.CurrentDirectory;
-
+            Console.WriteLine($"The current working directory is: {workingDirectory} !");
             // This will get the current PROJECT directory
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
@@ -28,10 +28,13 @@ namespace AdventOfCode_2019
             string[] file = File.ReadAllLines($"{projectDirectory}\\Day02\\input.in").FirstOrDefault().Split(','); ;
             
             var input = file.Select(x => Int32.Parse(x)).ToArray();
-            
+
             Solution solutionDay2 = new Solution();
-            var result = solutionDay2.IntcodeProgram(input, 12, 2);
-            Console.WriteLine($"The current value in the array = {result} !");
+            var result = solutionDay2.IntcodeProgram(input.ToArray(), 12, 2);
+            Console.WriteLine($"Day 1: The current value in the array = {result} !");
+
+            var result2 = solutionDay2.NounAndVerbPointer(input.ToArray());
+            Console.WriteLine($"Day 2: The current value in the array = {result2} !");
         }
     }
 }
