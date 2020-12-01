@@ -2,8 +2,7 @@
 using System.Linq;
 
 var lines = System.IO.File.ReadAllLines(@"Input\day1.txt");
-
-var input = lines.Select(int.Parse).ToList();
+var input = lines.Select(x => int.Parse(x)).ToList();
 
 foreach (var item in input)
 {
