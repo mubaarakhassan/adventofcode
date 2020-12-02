@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-var lines = System.IO.File.ReadAllLines(@"Input\day1.txt");
+var lines = System.IO.File.ReadAllLines(@"input.txt");
 var input = lines.Select(x => int.Parse(x)).ToList();
 
 foreach (var item in input)
