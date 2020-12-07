@@ -8,32 +8,48 @@ var matrix_array = new string[items.Length, items[0].Length];
 
 FillMatrixArray(matrix_array, items);
 
-var position_right = 3; // Initial position
-var position_bottom = 1;
-var tree_count = 0;
-
-while (position_bottom < matrix_array.GetLength(0))
+var movementPatterns = new int[,]
 {
-    if (position_right >= matrix_array.GetLength(1))
+    {1,1},
+    {1,3}, // <-- Remove all but this for part one's answer
+    {1,5},
+    {1,7},
+    {2,1}
+};
+
+double treeSum = 0;
+
+for (int i = 0; i < movementPatterns.GetLength(0); i++)
+{
+    var positionRight = movementPatterns[i,1]; // Initial position
+    var positionBottom =  movementPatterns[i,0];
+    var treeCount = 0;
+
+    while (positionBottom < matrix_array.GetLength(0))
     {
-        position_right = position_right - matrix_array.GetLength(1);
+        if (positionRight >= matrix_array.GetLength(1))
+        {
+            positionRight = positionRight - matrix_array.GetLength(1);
+        }
+
+        if (matrix_array[positionBottom, positionRight] == "#")
+        {
+            matrix_array[positionBottom, positionRight] = "X";
+            treeCount++;
+        }
+        else
+        {
+           matrix_array[positionBottom, positionRight] = "O";
+        }
+
+        positionRight +=  movementPatterns[i,1];
+        positionBottom +=  movementPatterns[i,0];
     }
 
-    if(matrix_array[position_bottom, position_right] == "#")
-    {
-        matrix_array[position_bottom, position_right] = "X";
-        tree_count++;
-    }
-    else
-    {
-        matrix_array[position_bottom, position_right] = "O";
-    }
-
-    position_right += 3;
-    position_bottom++;
+    treeSum = treeSum == 0 ? treeCount : treeSum * treeCount;
 }
 
-Console.WriteLine($"Trees {tree_count} encountered!");
+Console.WriteLine($"Trees {treeSum} encountered!");
 
 PrintMatrixString(matrix_array);
 
