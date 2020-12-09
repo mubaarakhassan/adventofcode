@@ -11,7 +11,7 @@ FillMatrixArray(matrix_array, items);
 var movementPatterns = new int[,]
 {
     {1,1},
-    {1,3}, // <-- Remove all but this for part one's answer
+    {1,3},
     {1,5},
     {1,7},
     {2,1}

@@ -6,6 +6,18 @@ var items = System.IO.File.ReadAllText(@"input.txt").Split(new string[] { "\r\n\
 
 var passportsCount = 0;
 
+/**
+* byr (Birth Year) - four digits; at least 1920 and at most 2002.
+* iyr (Issue Year) - four digits; at least 2010 and at most 2020.
+* eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
+* hgt (Height) - a number followed by either cm or in:
+* If cm, the number must be at least 150 and at most 193.
+* If in, the number must be at least 59 and at most 76.
+* hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
+* ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
+* pid (Passport ID) - a nine-digit number, including leading zeroes.
+* cid (Country ID) - ignored, missing or not.
+**/
 var patternsDictionary = new Dictionary<string,string>
 {
     {"byr","^([1][9][2-9][0-9]|[2][0][0][0-2])$"},
@@ -23,7 +35,7 @@ foreach(var item in items)
     
     if(matches.Count >= 7)
     {
-        //HashSet allows only the unique values to the list
+        // HashSet allows only the unique values to the list
         var occuranceHash = new HashSet<string>();
 
         foreach (Match match in matches)
