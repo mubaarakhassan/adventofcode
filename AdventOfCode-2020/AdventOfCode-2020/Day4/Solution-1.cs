@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-var items = System.IO.File.ReadAllText(@"input.txt").Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+var items = System.IO.File.ReadAllLines(@"input.txt").Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 var passportsCount = 0;
 
