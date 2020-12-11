@@ -6,26 +6,9 @@ var items = System.IO.File.ReadAllLines(@"input.txt");
 
 var seatList = FillSeatIds(items);
 
-var prev = 0;
-var current = 0;
-var foundSeat = true;
+var seatId = seatList.Where((item, index) => seatList[index + 1] - item != 1).First() + 1;
 
-foreach (var next in seatList)
-{
-    if (prev != 0 && current != 0) // Ignore the first value
-    {
-        foundSeat = prev != 0 && current - 1 == prev && current + 1 == next ? true : false;
-    }
-
-    if (!foundSeat)
-    {
-        Console.WriteLine($"Seat {current + 1} found!");
-        break;
-    }
-
-    prev = current;
-    current = next;
-}
+Console.WriteLine($"Seat {seatId} found!");
 
 List<int> FillSeatIds(string[] items)
 {
