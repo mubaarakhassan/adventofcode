@@ -26,7 +26,8 @@ Console.WriteLine($"Number of shiny gold bag {CountContainedBags("shiny gold")} 
 bool ContainShinyBags(string currentBag, string bagToBeFound) => bagDictionary[currentBag].Where(x => x.Item1.Contains(bagToBeFound)).Any()
                                                                 || bagDictionary[currentBag].Where(x => ContainShinyBags(x.Item1, bagToBeFound)).Any();
 
-int CountContainedBags(string bagToBeFound) => bagDictionary[bagToBeFound].Select(x => x.Amount + x.Amount * CountContainedBags(x.Name)).Sum();
+// Same as the ContainShinyBags function but this time calculate the amount of bags by using the x + (x * the bags within it) formula.
+int CountContainedBags(string bagToBeFound) => bagDictionary[bagToBeFound].Select(x => x.Amount + (x.Amount * CountContainedBags(x.Name))).Sum();
 
 string ExtractName(string value) => Regex.Replace(value, @"[\d-]", "")
                                     .Replace(".", "")
