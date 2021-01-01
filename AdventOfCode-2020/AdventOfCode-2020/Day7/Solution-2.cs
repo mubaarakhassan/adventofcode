@@ -13,7 +13,10 @@ foreach (var item in items)
 
     splittedItems.RemoveAll(x => x.Contains("no other bags"));
 
-    var bags = splittedItems.Select((value, index) => new { Name = ExtractName(splittedItems[index]), Amount = index != 0 ? ExtractAmount(splittedItems[index]) : 0 }).ToList();
+    var bags = splittedItems.Select((value, index) => new { 
+                                                    Name = ExtractName(splittedItems[index]), 
+                                                    Amount = index != 0 ? ExtractAmount(splittedItems[index]) : 0 
+                                                    }).ToList();
 
     bagDictionary.Add(bags[0].Name, bags.GetRange(1, bags.Count - 1).Select(x => (x.Name, x.Amount)).ToList());
 }
