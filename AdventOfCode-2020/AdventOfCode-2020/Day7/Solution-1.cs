@@ -11,7 +11,6 @@ foreach (var item in items)
 {
     var splittedItems = item.Split(new string[] { "contain", ",", "", "." }, 10, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-    // Remove unused bags.
     splittedItems.RemoveAll(x => x.Contains("no other bags"));
 
     var bags = splittedItems.Select((value, index) => new { Name = ExtractName(splittedItems[index]), Amount = index != 0 ? ExtractAmount(splittedItems[index]) : 0 }).ToList();

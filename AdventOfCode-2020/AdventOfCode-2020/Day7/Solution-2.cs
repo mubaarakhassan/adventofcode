@@ -11,7 +11,6 @@ foreach (var item in items)
 {
     var splittedItems = item.Split(new string[] { "contain", ",", "", "." }, 10, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-    // Remove unused bags.
     splittedItems.RemoveAll(x => x.Contains("no other bags"));
 
     var bags = splittedItems.Select((value, index) => new { Name = ExtractName(splittedItems[index]), Amount = index != 0 ? ExtractAmount(splittedItems[index]) : 0 }).ToList();
@@ -26,7 +25,7 @@ Console.WriteLine($"Number of shiny gold bag {CountContainedBags("shiny gold")} 
 bool ContainShinyBags(string currentBag, string bagToBeFound) => bagDictionary[currentBag].Where(x => x.Item1.Contains(bagToBeFound)).Any()
                                                                 || bagDictionary[currentBag].Where(x => ContainShinyBags(x.Item1, bagToBeFound)).Any();
 
-// Same as the ContainShinyBags function but this time calculate the amount of bags by using the x + (x * the bags within it) formula.
+// Same as the ContainShinyBags function but this time calculate the amount of bags by using the x + (x * the bags within it) formula recursively.
 int CountContainedBags(string bagToBeFound) => bagDictionary[bagToBeFound].Select(x => x.Amount + (x.Amount * CountContainedBags(x.Name))).Sum();
 
 string ExtractName(string value) => Regex.Replace(value, @"[\d-]", "")
