@@ -14,11 +14,15 @@ foreach (var item in items)
     splittedItems.RemoveAll(x => x.Contains("no other bags"));
 
     var bags = splittedItems.Select((value, index) => new { 
+                                                    Value = value,
                                                     Name = ExtractName(splittedItems[index]), 
                                                     Amount = index != 0 ? ExtractAmount(splittedItems[index]) : 0 
-                                                    }).ToList();
+                                                    }).ToDictionary(x => x.Value, x => (x.Name, x.Amount) );
 
-    bagDictionary.Add(bags[0].Name, bags.GetRange(1, bags.Count - 1).Select(x => (x.Name, x.Amount)).ToList());
+    foreach(var kvp in bags)
+    {
+        bagDictionary.Add(kvp);
+    }
 }
 
 Console.WriteLine($"Number of shiny gold bag {CountContainedBags("shiny gold")} found!");
