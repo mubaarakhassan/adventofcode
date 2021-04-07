@@ -1,7 +1,9 @@
 # Advent of code
-Here is my advent of code solutions
+Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language.
 
-## Days finished
+In this repo you will find my finished and unfinished solutions.
+
+## Years finished 
 - [] 2020
 - [] 2019
 - [] 2018
