@@ -5,8 +5,9 @@ In this repo you will find my finished and unfinished solutions.
 
 For more information about the Advent of Code puzzles visit https://adventofcode.com/
 
-## Years finished 
-- [] 2020
-- [] 2019
-- [] 2018
-- [] 2017
+## Participations 
+- 2021 (Kotlin)
+- 2020 (C#)
+- 2019
+- 2018
+- 2017
