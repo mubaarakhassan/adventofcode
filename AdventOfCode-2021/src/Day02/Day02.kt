@@ -21,6 +21,7 @@ fun part1(input: List<String>): Int {
     // Step 2: Check if the line is going forward, down or up.
     // Step 3: Add or decrease it to horizontal position/depth.
     // Step 4: Multiply the final horizontal position and depth.
+
     var horizontal = 0;
     var depth = 0;
 
@@ -49,6 +50,7 @@ fun part2(input: List<String>): Int {
     // Step 2: Check if the line is going forward, down or up.
     // Step 3: Add or decrease it to horizontal position/depth/aim.
     // Step 4: Multiply the final horizontal position and depth.
+
     var horizontal = 0;
     var depth = 0;
     var aim = 0;
