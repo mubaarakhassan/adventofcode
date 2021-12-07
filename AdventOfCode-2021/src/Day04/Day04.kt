@@ -29,7 +29,6 @@ fun part1(input: List<String>): Int {
             for (row in board.rows)
                 row.rowItems.map { if (it.num == draw) it.marked = true; }
 
-
             if(board.validateWinningCondition())
                 return board.rows.sumOf { it.getTotalUnmarkedSum() * draw };
         }
