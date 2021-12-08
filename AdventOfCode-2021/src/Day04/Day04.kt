@@ -21,20 +21,20 @@ fun part1(input: List<String>): Int {
     // Step 4: Loop through the 'draws' and keep marks of score of the boards.
     // Step 5: Repeat this process until one wins because it has at least one complete row or column of marked numbers.
 
-    var draws = input.first().split(",").map { it.toInt() };
-    var boards = createBoards(input.drop(1));
+    var draws = input.first().split(",").map { it.toInt() }
+    var boards = createBoards(input.drop(1))
 
-    loop@ for (draw in draws){
+    loop@ for (draw in draws) {
         for (board in boards) {
             for (row in board.rows)
                 row.rowItems.map { if (it.num == draw) it.marked = true; }
 
-            if(board.validateWinningCondition())
-                return board.rows.sumOf { it.getTotalUnmarkedSum() * draw };
+            if (board.validateWinningCondition())
+                return board.rows.sumOf { it.getTotalUnmarkedSum() * draw }
         }
     }
 
-    return 0;
+    return 0
 }
 
 fun part2(input: List<String>): Int {
@@ -46,39 +46,39 @@ fun part2(input: List<String>): Int {
     // Step 4: Loop through the 'draws' and keep marks of score of the boards.
     // Step 5: Repeat this process until the last one wins.
 
-    var draws = input.first().split(",").map { it.toInt() };
-    var boards = createBoards(input.drop(1));
-    var winners = linkedSetOf <Int>(); // only allows unique boards and maintains the order.
+    var draws = input.first().split(",").map { it.toInt() }
+    var boards = createBoards(input.drop(1))
+    var winners = linkedSetOf<Int>() // only allows unique boards and maintains the order.
 
-    for (draw in draws){
+    for (draw in draws) {
         for (board in boards) {
             for (row in board.rows)
                 row.rowItems.map { if (it.num == draw) it.marked = true; }
 
-            if(board.validateWinningCondition())
-                winners.add(board.id);
+            if (board.validateWinningCondition())
+                winners.add(board.id)
 
-            if(winners.size == boards.size) // Wait until the last winner.
-                return boards[winners.last()].rows.sumOf { it.getTotalUnmarkedSum() * draw;  }
+            if (winners.size == boards.size) // Wait until the last winner.
+                return boards[winners.last()].rows.sumOf { it.getTotalUnmarkedSum() * draw; }
         }
     }
 
-    return 0;
+    return 0
 }
 
-fun createBoards(input: List<String>) : List<Board> {
-    var rawBoards = input.filter { !it.isNullOrBlank() }.chunked(5);
-    var boards = mutableListOf<Board>();
+fun createBoards(input: List<String>): List<Board> {
+    var rawBoards = input.filter { !it.isNullOrBlank() }.chunked(5)
+    var boards = mutableListOf<Board>()
 
-    for ((i, items) in rawBoards.withIndex()){
-        var rows = mutableListOf<Row>();
-        for ((j,item) in items.withIndex()){
+    for ((i, items) in rawBoards.withIndex()) {
+        var rows = mutableListOf<Row>()
+        for ((j, item) in items.withIndex()) {
             var rowItem = item.split("\\s".toRegex()).filter { !it.isNullOrBlank() }.map { RowItem(it.toInt(), false) }
-            rows.add(j, Row(rowItem));
+            rows.add(j, Row(rowItem))
         }
 
-        boards.add(i, Board(i, rows));
+        boards.add(i, Board(i, rows))
     }
 
-    return boards;
+    return boards
 }

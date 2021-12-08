@@ -22,18 +22,18 @@ fun part1(input: List<String>): Int {
     // Step 3: Add or decrease it to horizontal position/depth.
     // Step 4: Multiply the final horizontal position and depth.
 
-    var horizontal = 0;
-    var depth = 0;
+    var horizontal = 0
+    var depth = 0
 
-    input.forEach{ s ->
-        var (direction, adjustment) = s.split(" ");
+    input.forEach { s ->
+        var (direction, adjustment) = s.split(" ")
         when (direction) {
             "forward" -> horizontal += adjustment.toInt()
             "down" -> depth += adjustment.toInt()
             "up" -> depth -= adjustment.toInt()
         }
     }
-    return (horizontal * depth);
+    return (horizontal * depth)
 }
 
 fun part2(input: List<String>): Int {
@@ -51,17 +51,19 @@ fun part2(input: List<String>): Int {
     // Step 3: Add or decrease it to horizontal position/depth/aim.
     // Step 4: Multiply the final horizontal position and depth.
 
-    var horizontal = 0;
-    var depth = 0;
-    var aim = 0;
+    var horizontal = 0
+    var depth = 0
+    var aim = 0
 
-    input.forEach{ s ->
-        var (direction, adjustment) = s.split(" ");
+    input.forEach { s ->
+        var (direction, adjustment) = s.split(" ")
         when (direction) {
-            "forward" -> { horizontal += adjustment.toInt();  depth += aim * adjustment.toInt();}
-            "down" -> aim += adjustment.toInt();
-            "up" -> aim -= adjustment.toInt();
+            "forward" -> {
+                horizontal += adjustment.toInt(); depth += aim * adjustment.toInt()
+            }
+            "down" -> aim += adjustment.toInt()
+            "up" -> aim -= adjustment.toInt()
         }
     }
-    return (horizontal * depth);
+    return (horizontal * depth)
 }

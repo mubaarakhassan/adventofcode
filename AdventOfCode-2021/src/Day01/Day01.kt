@@ -16,11 +16,11 @@ fun part1(input: List<String>): Int {
     // Step 2: Retrieve the current and previous measurement value.
     // Step 3: Compare the retrieved values if it has increased or decreased from the previous measurement.
 
-    val depths = input.map { it.toInt() };
-    var count = 0;
+    val depths = input.map { it.toInt() }
+    var count = 0
 
-    depths.zipWithNext(){s1, s2 -> if(s1 < s2) count++;}
-    return count;
+    depths.zipWithNext { s1, s2 -> if(s1 < s2) count++;}
+    return count
 }
 
 fun part2(input: List<String>): Int {
@@ -32,10 +32,10 @@ fun part2(input: List<String>): Int {
     // Step 2: Retrieve the first, second and third measurement windows and get the sum.
     // Step 3: Compare the retrieved sum value with the previous measurement and check if it has increased or decreased.
 
-    val depths = input.map { it.toInt() };
-    var count = 0;
+    val depths = input.map { it.toInt() }
+    var count = 0
     val sums = depths.windowed(3) { it.sum() }
 
-    sums.zipWithNext(){s1, s2 -> if(s1 < s2) count++;}
-    return count;
+    sums.zipWithNext { s1, s2 -> if(s1 < s2) count++;}
+    return count
 }

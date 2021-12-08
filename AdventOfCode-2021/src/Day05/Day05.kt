@@ -26,15 +26,16 @@ fun part1(input: List<String>): Int {
     // Step 5: Repeat step 4 until there are no more lines left.
     // Step 6: Count the amount of points the two lines overlap.
 
-    var points = input.map { it -> it.split(" -> ").map { it -> it.split(",").map { it.toInt() } }.flatten() }.filter { it[0] == it[2] || it[1] == it[3] }
+    var points = input.map { it -> it.split(" -> ").map { it -> it.split(",").map { it.toInt() } }.flatten() }
+        .filter { it[0] == it[2] || it[1] == it[3] }
     var size = points.maxOf { it -> it.maxOf { it } }
     var diagram = Array(size + 1) { IntArray(size + 1) }
 
-    for (point in points){
+    for (point in points) {
         drawLineFromPoints(point[0], point[1], point[2], point[3], diagram)
     }
 
-    return diagram.sumOf() { it -> it.count() { it > 1 } }
+    return diagram.sumOf { it -> it.count { it > 1 } }
 }
 
 fun part2(input: List<String>): Int {
@@ -50,39 +51,38 @@ fun part2(input: List<String>): Int {
     var size = points.maxOf { it -> it.maxOf { it } }
     var diagram = Array(size + 1) { IntArray(size + 1) }
 
-    for (point in points){
+    for (point in points) {
         drawLineFromPoints(point[0], point[1], point[2], point[3], diagram)
     }
 
-    return diagram.sumOf() { it -> it.count() { it > 1 } }
+    return diagram.sumOf { it -> it.count { it > 1 } }
 }
 
-fun drawLineFromPoints(x0: Int, y0: Int, x1: Int, y1: Int, diagram: Array<IntArray>){
+fun drawLineFromPoints(x0: Int, y0: Int, x1: Int, y1: Int, diagram: Array<IntArray>) {
     var x = x0 - x1
     var y = y0 - y1
 
-    while (x != 0 && y != 0){
-        diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1;
+    while (x != 0 && y != 0) {
+        diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1
 
         // check if number is negative or positive
-        if(x > 0)  x-- else x++
-        if(y > 0)  y-- else y++
+        if (x > 0) x-- else x++
+        if (y > 0) y-- else y++
 
-        if(x == 0 || y == 0){
-            diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1;
+        if (x == 0 || y == 0) {
+            diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1
         }
     }
 
-    while (x != 0 || y != 0)
-    {
-        diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1;
+    while (x != 0 || y != 0) {
+        diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1
 
         // check if number is negative or positive
-        if(x == 0 && y > 0)  y--; if(y < 0) y++
-        if(y == 0 && x > 0)  x--; if(x < 0) x++
+        if (x == 0 && y > 0) y--; if (y < 0) y++
+        if (y == 0 && x > 0) x--; if (x < 0) x++
 
-        if(y == 0 && x == 0){
-            diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1;
+        if (y == 0 && x == 0) {
+            diagram[y + y1][x + x1] = diagram[y + y1][x + x1] + 1
         }
     }
 }

@@ -23,17 +23,17 @@ fun part1(input: List<String>): Int {
     // Step 5: Calculate the most occurring character and least occurring character.
     // Step 5: Multiply the final result.
 
-    var common_gamma_rate = "";
-    var uncommon_gamma_rate = "";
+    var common_gamma_rate = ""
+    var uncommon_gamma_rate = ""
 
     input.first().forEachIndexed { index, _ ->
         var amount = input.filter { it[index] == '0'; }
 
-        common_gamma_rate += if(amount.size > (input.size / 2)) '0' else '1';
-        uncommon_gamma_rate += if(common_gamma_rate.last() == '0') '1' else '0';
+        common_gamma_rate += if (amount.size > (input.size / 2)) '0' else '1'
+        uncommon_gamma_rate += if (common_gamma_rate.last() == '0') '1' else '0'
     }
 
-    return calculateBinaryToDecimal(common_gamma_rate) * calculateBinaryToDecimal(uncommon_gamma_rate);
+    return calculateBinaryToDecimal(common_gamma_rate) * calculateBinaryToDecimal(uncommon_gamma_rate)
 }
 
 fun part2(input: List<String>): Int {
@@ -57,22 +57,26 @@ fun part2(input: List<String>): Int {
     val oxygenGeneratorRating = getRating(0, input, '1', '0')
     val co2ScrubberRating = getRating(0, input, '0', '1')
 
-    return oxygenGeneratorRating * co2ScrubberRating;
+    return oxygenGeneratorRating * co2ScrubberRating
 }
 
-fun getRating(index: Int, list: List<String>, common: Char, uncommon: Char) : Int {
+fun getRating(index: Int, list: List<String>, common: Char, uncommon: Char): Int {
     // Base case is when we only have 2 values left.
-    if(list.size == 2){
-        val rating = if (list[0][index] == common) list[0] else list[1];
-        return calculateBinaryToDecimal(rating);
+    if (list.size == 2) {
+        val rating = if (list[0][index] == common) list[0] else list[1]
+        return calculateBinaryToDecimal(rating)
     }
     // By using 0 we can get both the most common and least common bit for the generators.
-    val amount = list.filter { it[index] == '0'; }.size;
+    val amount = list.filter { it[index] == '0'; }.size
 
-    return getRating(index + 1, list.filter { it[index] == if (amount > (list.size / 2)) uncommon else common }, common, uncommon);
+    return getRating(
+        index + 1,
+        list.filter { it[index] == if (amount > (list.size / 2)) uncommon else common },
+        common,
+        uncommon
+    )
 }
 
-fun calculateBinaryToDecimal(input: String): Int
-{
-    return (Integer.parseInt(input, 2));
+fun calculateBinaryToDecimal(input: String): Int {
+    return (Integer.parseInt(input, 2))
 }
