@@ -9,7 +9,6 @@ fun main() {
     println(part2(input))
 }
 
-
 fun part1(input: List<String>): Int {
     // Objective: Count the number of times a depth measurement increases from the previous measurement
 

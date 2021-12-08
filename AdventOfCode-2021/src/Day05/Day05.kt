@@ -1,8 +1,6 @@
 package Day05
 
 import readInput
-import kotlin.math.absoluteValue
-
 
 fun main() {
     val input = readInput("Day05/Day05")
