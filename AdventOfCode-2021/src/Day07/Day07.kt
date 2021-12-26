@@ -24,10 +24,10 @@ fun part2(input: List<String>): Int {
     val results = mutableListOf<Pair<Int, Int>>()
     var positions = input.first().split(',').map { it.toInt() }
 
-    // Generalized formula: T(n) = n*(n+1)/2 we are using for retrieving the partial sum of n.
-    // (see for more info about the formula: https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF)
     for (position in positions){
         results.add(Pair(position, positions.sumOf {
+            // Generalized formula: T(n) = n*(n+1)/2 we are using for retrieving the partial sum of n.
+            // (see for more info about the formula: https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF)
             val n = abs(it - position)
             (n * (n+1)) / 2
         }))
