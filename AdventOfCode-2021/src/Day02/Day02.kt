@@ -3,7 +3,7 @@ package day02
 import readInput
 
 fun main() {
-    val input = readInput("Day02/Day02")
+    val input = readInput("Day02")
 
     println(part1(input))
     println(part2(input))

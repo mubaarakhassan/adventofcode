@@ -4,7 +4,7 @@ import readInput
 import kotlin.math.abs
 
 fun main() {
-    val input = readInput("Day07/Day07")
+    val input = readInput("Day07")
     println(part1(input))
     println(part2(input))
 }
