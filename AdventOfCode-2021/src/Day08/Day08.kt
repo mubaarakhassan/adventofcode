@@ -11,12 +11,15 @@ fun main() {
 fun part1(input: List<String>): Int {
     var display = SevenSegmentDisplay(mapOf(1 to 2, 4 to 4, 7 to 3, 8 to 7))
     var patterns = input.map {
-            val split = it.split('|')
-            Pair(split[0].split(" "), split[1].split(" "))
+        val split = it.split('|')
+        Pair(
+            split[0].trim(' ').split(" ").map { item -> item.toSortedSet().joinToString("") },
+            split[1].trim(' ').split(" ").map { item -> item.toSortedSet().joinToString("") }
+        )
     }
 
     patterns.forEach { it ->
-        // We only need to retrieve the second part of the patterns
+        // We only need to retrieve the second part of the patterns and search
         it.second.forEach {
             display.search(it)
         }
@@ -42,20 +45,15 @@ fun part2(input: List<String>): Int {
         it.first.filter { it.length != 5 || it.length != 6 }.forEach {
             display.map(it)
         }
-
         // Now we can filter the 5 and 6
         it.first.filter { it.length == 5 || it.length == 6 }.forEach {
             display.map(it)
         }
-
         var decoded = "";
-
         it.second.forEach {
             decoded += display.decode(it)
         }
-
         println("${it.first}: $decoded")
-
         output += decoded.toInt()
     }
 
