@@ -4,7 +4,7 @@ import readInput
 
 fun main() {
     val input = readInput("Day09")
-    println("Sum of the low point is ${println(part1(input))}")
+    println("Sum of the low point is ${part1(input)}")
     //println(part2(input))
 }
 
