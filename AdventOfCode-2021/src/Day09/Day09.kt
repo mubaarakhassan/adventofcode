@@ -5,19 +5,10 @@ import readInput
 fun main() {
     val input = readInput("Day09")
     println("Sum of the low point is ${part1(input)}")
-    //println(part2(input))
+    println("Sum of the three largest basins ${part2(input)}" )
 }
 
 fun part1(input: List<String>): Int {
-    // Basically loop through the initial input values and then loop again inside the value you are looping from.
-    // While looping through check if the nested loop value check the four adjacent locations (up, down, left, and right)
-    // if the value is lower add it to the results array. e.g. ;
-    // 1, 0, 5 and 5 (the lowest values are from left to right and top to bottom).
-    //  2*1*9994321*0*
-    //  3987894921
-    //  98*5*6789892
-    //  8767896789
-    //  989996*5*678
 
     val results = mutableListOf<Int>()
 
@@ -29,6 +20,8 @@ fun part1(input: List<String>): Int {
             val right = j + 1
             val point = item.digitToInt()
 
+            // Check if the current location is lower than its adjacent locations
+            // If not, skip to the next location
             if(up >= 0 && point > input[up][j].digitToInt()) continue@loop
 
             if(down <= (input.size - 1) && point > input[down][j].digitToInt()) continue@loop
@@ -37,9 +30,69 @@ fun part1(input: List<String>): Int {
 
             if(right <= (items.length - 1) && point > input[i][right].digitToInt()) continue@loop
 
-            println("We found the lowest point which is $point")
             results.add(point + 1)
         }
     }
     return results.sum()
 }
+
+fun part2(input: List<String>): Int {
+
+    // Objective: Find the sizes of the three largest basins and calculate their product.
+
+    // Step 1: Identify the low points
+    // Step 2: Assign locations to basins
+    // Step 3: Calculate the size of each basin
+    // Step 4: Find the three largest basins
+    // Step 5: Multiply the sizes together
+
+    val heightMap = input.map { row ->
+        row.map { it.toString().toInt() }
+    }
+
+    val numRows = heightMap.size
+    val numCols = heightMap[0].size
+
+    val visited = mutableSetOf<Pair<Int, Int>>()
+    val basinSizes = mutableMapOf<Pair<Int, Int>, Int>()
+
+    val directions = listOf(
+        Pair(-1, 0),  // Up
+        Pair(1, 0),   // Down
+        Pair(0, -1),  // Left
+        Pair(0, 1)    // Right
+    )
+
+    // Depth-first search (DFS) function to explore basins from each low point
+    fun dfs(point: Pair<Int, Int>, basin: Pair<Int, Int>) {
+        visited.add(point)
+        basinSizes[basin] = basinSizes.getOrDefault(basin, 0) + 1
+
+        for (direction in directions) {
+            val newRow = point.first + direction.first
+            val newCol = point.second + direction.second
+            val newPoint = Pair(newRow, newCol)
+
+            if (newRow in 0 until numRows && newCol in 0 until numCols) {
+                val height = heightMap[newRow][newCol]
+
+                if (height < 9 && newPoint !in visited) {
+                    dfs(newPoint, basin)
+                }
+            }
+        }
+    }
+
+    for (i in 0 until numRows) {
+        for (j in 0 until numCols) {
+            val point = Pair(i, j)
+            if (point !in visited && heightMap[i][j] < 9) {
+                dfs(point, point)
+            }
+        }
+    }
+
+    val largestBasins = basinSizes.values.sortedDescending().take(3)
+    return largestBasins.reduce { acc, basinSize -> acc * basinSize }
+}
+
