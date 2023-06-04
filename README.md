@@ -8,7 +8,7 @@ In this repository, you will find my finished and unfinished solutions for diffe
 My primary goal is not to be the first on any leaderboard; instead, I prioritize having fun while solving these coding puzzles and experimenting with various techniques. To enhance the learning experience, I try to include explanations of my thinking process in the solutions.
 
 ## Participations:
-
+- **2022**: Rust
 - **2021**: Kotlin
 - **2020**: C#
 
