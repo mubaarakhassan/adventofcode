@@ -1,4 +1,4 @@
-# Advent of Code🎄
+# Advent of Code❄️
 ### Welcome to my Advent of Code (AoC) puzzle solutions repository!
 
 Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language. Every day throughout the month of December, a new puzzle is released, challenging participants to come up with creative solutions.
@@ -6,6 +6,7 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 In this repository, you will find my finished and unfinished solutions for different years. Each year, I pick a different programming language to tackle the puzzles, allowing me to explore and learn new concepts along the way.
 
 ## Participations:
+- **2023**: Python
 - **2022**: Rust
 - **2021**: Kotlin
 - **2020**: C#
