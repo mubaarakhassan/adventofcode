@@ -6,8 +6,10 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 In this repository, you will find my finished and unfinished solutions for different years. Each year, I pick a different programming language to tackle the puzzles, allowing me to explore and learn new concepts along the way.
 
 ## Participations:
+- **2025**: Rust
+- **2024**: C
 - **2023**: Python
-- **2022**: Rust
+- **2022**: Swift
 - **2021**: Kotlin
 - **2020**: C#
 
